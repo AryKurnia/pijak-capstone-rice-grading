@@ -7,7 +7,7 @@ info:
     Built with TensorFlow/Keras, Python, and Node.js web interface.
   version: 1.0.0
   contact:
-    name: Ary Kurnia
+    name: Pijak Capstone Team
     email: aryk922@gmail.com
 servers:
   - url: https://pijak.arykurnia.my.id/api
@@ -38,11 +38,58 @@ paths:
               schema:
                 type: object
                 properties:
-                  prediction:
+                  success:
+                    type: boolean
+                    description: Indicates if the prediction was successful.
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      prediction:
+                        type: string
+                        description: The predicted quality category (Good, Medium, Poor).
+                        example: "Good"
+                      accuracy:
+                        type: number
+                        description: The confidence score of the prediction (0 to 1).
+                        example: 0.95
+                  message:
                     type: string
-                    description: The predicted quality category (Good, Medium, Poor).
-                    example: "Good"
+                    description: A message providing additional information about the prediction.
+                    example: "Klasifikasi berhasil dilakukan."
         '400':
           description: Bad request (e.g., missing image)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates if the request was successful.
+                    example: false
+                  data:
+                    type: object
+                    description: No data returned due to error.
+                  message:
+                    type: string
+                    description: A message describing the error.
+                    example: "Format gambar tidak didukung"
         '500':
           description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates if the request was successful.
+                    example: false
+                  data:
+                    type: object
+                    description: No data returned due to error.
+                  message:
+                    type: string
+                    description: A message describing the error.
+                    example: "Terjadi kesalahan pada server"
