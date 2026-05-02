@@ -1,0 +1,47 @@
+services:
+  inference:
+    build:
+      context: ./inference
+      dockerfile: Dockerfile
+    container_name: rice-inference
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./inference/app/model:/app/app/model:ro  # mount model dari host
+    env_file:
+      - ./inference/.env
+    # networks:
+    #   - rice-net
+
+  # api:
+  #   build:
+  #     context: ./api
+  #     dockerfile: Dockerfile
+  #   container_name: rice-api
+  #   restart: unless-stopped
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     - INFERENCE_URL=http://inference:5000
+  #   depends_on:
+  #     - inference
+  #   networks:
+  #     - rice-net
+
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   container_name: rice-frontend
+  #   restart: unless-stopped
+  #   ports:
+  #     - "80:80"
+  #   depends_on:
+  #     - api
+  #   networks:
+  #     - rice-net
+
+# networks:
+#   rice-net:
+#     driver: bridge

@@ -1,0 +1,97 @@
+# openapi: 3.2.0
+openapi: 3.1.0
+info:
+  title: RICE GRADING API
+  description: API documentation from RICE GRADING.
+    Rice quality grading system using custom CNN to classify rice images into Good, Medium, and Poor categories.
+    Built with TensorFlow/Keras, Python, and Node.js web interface.
+  version: 1.0.0
+  contact:
+    name: Pijak Capstone Team
+    email: aryk922@gmail.com
+servers:
+  - url: https://pijak.arykurnia.my.id/api
+    description: Production server
+  - url: http://localhost:3000/api
+    description: Node.js API Development server
+  - url: http://localhost:5000/api/v1/
+    description: Flask API Development server
+paths:
+  /predict:
+    post:
+      summary: Predict rice quality from an image
+      description: Upload an image of rice to get a quality prediction (Good, Medium, Poor).
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: The image file of the rice to be classified.
+      responses:
+        '200':
+          description: Successful prediction
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates if the prediction was successful.
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      prediction:
+                        type: string
+                        description: The predicted quality category (Good, Medium, Poor).
+                        example: "Good"
+                      accuracy:
+                        type: number
+                        description: The confidence score of the prediction (0 to 1).
+                        example: 0.95
+                  message:
+                    type: string
+                    description: A message providing additional information about the prediction.
+                    example: "Klasifikasi berhasil dilakukan."
+        '400':
+          description: Bad request (e.g., missing image)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates if the request was successful.
+                    example: false
+                  data:
+                    type: object
+                    description: No data returned due to error.
+                  message:
+                    type: string
+                    description: A message describing the error.
+                    example: "Format gambar tidak didukung"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates if the request was successful.
+                    example: false
+                  data:
+                    type: object
+                    description: No data returned due to error.
+                  message:
+                    type: string
+                    description: A message describing the error.
+                    example: "Terjadi kesalahan pada server"

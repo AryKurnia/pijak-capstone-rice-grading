@@ -1,0 +1,20 @@
+{
+  "name": "pijak-capstone-rice-grading",
+  "version": "1.0.0",
+  "description": "Rice quality grading system using custom CNN to classify rice images into Good, Medium, and Poor categories. Built with TensorFlow/Keras, Python, and Node.js web interface.",
+  "homepage": "https://github.com/AryKurnia/pijak-capstone-rice-grading#readme",
+  "bugs": {
+    "url": "https://github.com/AryKurnia/pijak-capstone-rice-grading/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AryKurnia/pijak-capstone-rice-grading.git"
+  },
+  "license": "MIT",
+  "author": "Ary Kurnia",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
