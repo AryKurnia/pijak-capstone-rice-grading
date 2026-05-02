@@ -1,5 +1,6 @@
 # inference
 inference/app/model/
+inference/.venv/
 **/__pycache__/
 **/node_modules/
 **/.env

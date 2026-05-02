@@ -13,7 +13,9 @@ servers:
   - url: https://pijak.arykurnia.my.id/api
     description: Production server
   - url: http://localhost:3000/api
-    description: Development server
+    description: Node.js API Development server
+  - url: http://localhost:5000/api/v1/
+    description: Flask API Development server
 paths:
   /predict:
     post:
